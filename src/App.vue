@@ -5,10 +5,11 @@
       <div class="user-card-role">Инженер</div>
       <div class="user-card-logout">Выйти</div>
     </div>
-    <img alt="Vue logo" src="@/assets/logo.svg" />
+    <div class="logo-style">
+      <img alt="Vue logo" src="@/assets/logo.svg" />
+    </div>
     <div class="logo-text">
-      АС учета технологического <br />
-      оборудования ЖД Агенств
+      АС учета технологического оборудования ЖД Агенств
     </div>
     <div class="nav-buttons">
       <router-link to="/capfk">ЦАПФК</router-link>
@@ -42,6 +43,7 @@ body {
   text-align: left;
   padding-left: 12px;
   color: #260101;
+  width: 200px;
 }
 
 nav {
@@ -104,5 +106,9 @@ nav a:hover {
   100% {
     box-shadow: 4px 4px 20px 0px rgba(38, 1, 1, 1);
   }
+}
+
+.logo-style {
+  margin-left: 36px;
 }
 </style>
