@@ -16,8 +16,10 @@
         <div class="row">Начальник</div>
       </div>
       <div v-for="(item, index) in data" :key="index" class="table_header">
-        <div class="row_cell">{{ item.name }}</div>
-        <div class="row_cell">{{ item.departments_quantity }} участи</div>
+        <router-link to="/department">
+          <div class="row_cell">{{ item.name }}</div>
+        </router-link>
+        <div class="row_cell">{{ item.departments_quantity }} участков</div>
         <div class="row_cell">{{ item.adress }}</div>
         <div class="row_cell">{{ item.index }}</div>
         <div class="row_cell">{{ item.master }}</div>

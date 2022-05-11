@@ -22,4 +22,4 @@ const departmentData = [
     }
 ]
 
-export { departmentData }
+export default departmentData; 

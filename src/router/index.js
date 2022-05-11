@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createRouter, createWebHistory } from "vue-router";
 import CapfkView from "../views/CapfkView.vue";
 
@@ -6,6 +7,11 @@ const routes = [
     path: "/capfk",
     name: "home",
     component: CapfkView,
+  },
+  {
+    path: "/department",
+    name: "department",
+    component: () => import("../views/DepartmentView.vue"),
   },
   {
     path: "/about",
