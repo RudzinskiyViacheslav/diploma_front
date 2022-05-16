@@ -5,9 +5,12 @@
       <div class="table-header">
         <div class="table-header__name">
           Производственные участки ЦАПФК "{{ this.$route.query.capfk_id }}"
+          {{ this.$route.params }}
         </div>
-        <div class="table-header__search">
-          <input type="text" />
+        <div id="create_card_button">
+          <button class="btn" @click="create_card">
+            Создать производственную карточку
+          </button>
         </div>
       </div>
       <div class="table_header">
@@ -33,6 +36,35 @@
 </template>
 
 <script>
+// import Vue from "vue";
+import { createApp } from "vue";
+const app = createApp({
+  data() {
+    return {
+      name: "Vue.js",
+    };
+  },
+  methods: {
+    create_card() {
+      fetch("localhost:3000/api/v1/production_card/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: {
+          equipment_number: "spir123",
+          factory_number: "21321312",
+          delivery_date: "20.01.2021",
+          depreciation_period: "160",
+          equipment_type: "Терминал",
+          equipment_department_id: 1,
+          price: "1000",
+        },
+      });
+    },
+  },
+});
+app.mount("#create_card_button");
 // @ is an alias to /src
 import departmentData from "../models/departments";
 import {
@@ -67,6 +99,29 @@ export default {
 </script>
 
 <style scoped>
+.btn {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 25px;
+  margin: 0 15px 15px 0;
+  outline: none;
+  border: 0px solid #000;
+  border-radius: 50px;
+  height: 46px;
+  line-height: 46px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background-color: #260101;
+  box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  transition: box-shadow 0.2s;
+}
 a {
   color: inherit;
   text-decoration: inherit;
@@ -88,6 +143,7 @@ a {
   color: white;
   font-weight: semi-bold;
   font-size: 20px;
+  padding-top: 10px;
 }
 .table_header {
   display: flex;

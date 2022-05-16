@@ -6,7 +6,6 @@
         <div class="table-header__name">
           Оборудование производственного участка №
           {{ this.$route.query.equipment_department_id }}
-          номер хреномер {{ data[1].equipment_id }}
         </div>
         <div class="table-header__search">
           <input type="text" />
@@ -21,6 +20,7 @@
         <div class="row">Стоимость</div>
       </div>
       <div v-for="(item, index) in data" :key="index" class="table_header">
+        <!-- <div class="row_cell">Проверка айди {{ item.equipment_id }}</div> -->
         <router-link :to="`/equipment?equipment_id=${item.equipment_id}`">
           <div class="row_cell">№ {{ item.equipment_number }}</div>
         </router-link>
