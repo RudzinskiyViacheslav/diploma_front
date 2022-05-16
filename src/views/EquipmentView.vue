@@ -1,11 +1,12 @@
 <template>
   <div class="equipment">
-    <h1>{{ data }}</h1>
+    <!-- <h1>{{ data }}</h1> -->
     <div class="table">
       <div class="table-header">
         <div class="table-header__name">
           Оборудование производственного участка №
           {{ this.$route.query.equipment_department_id }}
+          номер хреномер {{ data[1].equipment_id }}
         </div>
         <div class="table-header__search">
           <input type="text" />
@@ -20,9 +21,7 @@
         <div class="row">Стоимость</div>
       </div>
       <div v-for="(item, index) in data" :key="index" class="table_header">
-        <router-link
-          :to="`/equipment?equipment_department_id=${item.equipment_number}`"
-        >
+        <router-link :to="`/equipment?equipment_id=${item.equipment_id}`">
           <div class="row_cell">№ {{ item.equipment_number }}</div>
         </router-link>
         <div class="row_cell">№ {{ item.factory_number }}</div>
@@ -37,7 +36,7 @@
 
 <script>
 import equipmentData from "@/models/equipment";
-// import { headers } from "@/network/equipment_query";
+// import { headers } from "@/network/equipment_item_query";
 export default {
   name: "EquipmentView",
   data() {

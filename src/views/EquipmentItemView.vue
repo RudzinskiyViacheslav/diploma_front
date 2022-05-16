@@ -1,18 +1,18 @@
 <template>
-  <div class="department">
-    <!-- <h1>{{ data }}</h1> -->
-    <div class="table">
+  <div class="equipment_item_view">
+    <h1>LPLPPLLP</h1>
+    <!-- <div class="table">
       <div class="table-header">
         <div class="table-header__name">
-          Производственные участки ЦАПФК "{{ this.$route.query.capfk_id }}"
+          Производственная карточка (оборудование)
         </div>
         <div class="table-header__search">
           <input type="text" />
         </div>
       </div>
       <div class="table_header">
-        <div class="row">Адрес участка</div>
-        <div class="row">Номер участка</div>
+        <div class="row">Адрес участкаwqerewqr</div>
+        <div class="row">Номер участкаwqerewqr</div>
         <div class="row">Начальник участка</div>
         <div class="row">Рабочий телефон</div>
         <div class="row">Количество оборудования</div>
@@ -28,27 +28,23 @@
         <div class="row_cell">{{ item.work_phone }}</div>
         <div class="row_cell">{{ item.equipment_quantity }}</div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import departmentData from "../models/departments";
-import {
-  //department_capfkid_request,
-  headers,
-} from "@/network/department_query";
+import equipmentItemData from "@/models/equipmentitem";
+import { headers } from "@/network/equipment_item_query";
 export default {
-  name: "DepartmentView",
+  name: "EquipmentItemView",
   data() {
     return {
-      data: departmentData,
+      data: equipmentItemData,
     };
   },
   mounted() {
     fetch(
-      `http://localhost/api/v1/production_point?capfk_id=${this.$route.query.capfk_id}`,
+      `http://localhost/api/v1/equipment?equipment_id=${this.$route.query.equipment_id}`,
       {
         headers: headers,
         method: "GET",
@@ -98,7 +94,7 @@ a {
   margin-bottom: 21px;
 }
 .row_cell {
-  width: 300px;
+  width: 250px;
   text-align: start;
   color: white;
   font-weight: semi-bold;
@@ -106,7 +102,7 @@ a {
 .row {
   font-size: 24px;
   font-weight: bold;
-  width: 300px;
+  width: 250px;
   text-align: start;
 }
 </style>
