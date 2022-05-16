@@ -9,6 +9,11 @@ const routes = [
     component: CapfkView,
   },
   {
+    path: "/equipment",
+    name: "equipment",
+    component: () => import("../views/EquipmentView.vue"),
+  },
+  {
     path: "/department",
     name: "department",
     component: () => import("../views/DepartmentView.vue"),

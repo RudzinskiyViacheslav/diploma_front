@@ -27,11 +27,6 @@
         <div class="row_cell">{{ item.capfk_master }}</div>
       </div>
     </div>
-    <!-- <ui-table :data="data" :thead="thead" :tbody="tbody">
-      <template #name="{ data }">
-        <div class="name">{{ data.name }}</div>
-      </template>
-    </ui-table> -->
   </div>
 </template>
 
@@ -92,6 +87,9 @@ a {
   backdrop-filter: blur(20px);
   border-radius: 16px;
   padding: 16px 54px;
+  font-family: Inter;
+  margin-right: 12px;
+  margin-left: 12px;
 }
 .table-header {
   display: flex;
@@ -100,6 +98,8 @@ a {
 }
 .table-header__name {
   color: white;
+  font-weight: semi-bold;
+  font-size: 20px;
 }
 .table_header {
   display: flex;
@@ -109,23 +109,16 @@ a {
 .table_header:not(:last-child) {
   margin-bottom: 21px;
 }
-.name {
-  background: red;
-}
-.table_header .row_cell {
-  /* width: 300px;
-  display: flex;
-  justify-content: flex-start; */
-}
 .row_cell {
-  width: 200px;
+  width: 250px;
   text-align: start;
   color: white;
+  font-weight: semi-bold;
 }
 .row {
   font-size: 24px;
   font-weight: bold;
-  width: 200px;
+  width: 250px;
   text-align: start;
 }
 </style>

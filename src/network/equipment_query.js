@@ -3,8 +3,8 @@ export const headers = {
   "Content-Type": "application/json",
 };
 
-export const department_capfkid_request = (id) => {
-  fetch(`http://localhost/api/v1/production_point?capfk_id=${id}`, {
+export const equipment_departmentid_request = (id) => {
+  fetch(`http://localhost/api/v1/equipment?equipment_department_id=${id}`, {
     headers: headers,
     method: "GET",
   })

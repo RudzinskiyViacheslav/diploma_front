@@ -47,7 +47,9 @@ body {
 }
 
 nav {
-  padding: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  padding-left: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
