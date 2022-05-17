@@ -5,15 +5,15 @@
       <div class="table-header">
         <div class="table-header__name">
           Производственные участки ЦАПФК "{{ this.$route.query.capfk_id }}"
-          {{ this.$route.params }}
         </div>
-        <div id="create_card_button">
-          <button class="btn" @click="create_card">
+        <div id="create_card_button" @click="create_card">
+          <div class="btn" @click="create_card">
             Создать производственную карточку
-          </button>
+          </div>
         </div>
       </div>
       <div class="table_header">
+        <div class="test" @click="apply"></div>
         <div class="row">Адрес участка</div>
         <div class="row">Номер участка</div>
         <div class="row">Начальник участка</div>
@@ -46,7 +46,8 @@ const app = createApp({
   },
   methods: {
     create_card() {
-      fetch("localhost:3000/api/v1/production_card/create", {
+      console.log("qwewqewqeq");
+      fetch("localhost/api/v1/equipment/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -61,6 +62,9 @@ const app = createApp({
           price: "1000",
         },
       });
+    },
+    apply() {
+      console.log(1);
     },
   },
 });
@@ -95,10 +99,38 @@ export default {
       )
       .catch((error) => console.log(error));
   },
+  methods: {
+    create_card() {
+      console.log("qwewqewqeq");
+      fetch("http://localhost/api/v1/equipment/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: {
+          equipment_number: "spir123",
+          factory_number: "21321312",
+          delivery_date: "20.01.2021",
+          depreciation_period: "160",
+          equipment_type: "Терминал",
+          equipment_department_id: 1,
+          price: "1000",
+        },
+      });
+    },
+    apply() {
+      console.log(1);
+    },
+  },
 };
 </script>
 
 <style scoped>
+.test {
+  width: 200px;
+  height: 200px;
+  background-color: red;
+}
 .btn {
   display: inline-block;
   box-sizing: border-box;

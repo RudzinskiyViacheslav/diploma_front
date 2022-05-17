@@ -21,7 +21,7 @@
       </div>
       <div v-for="(item, index) in data" :key="index" class="table_header">
         <!-- <div class="row_cell">Проверка айди {{ item.equipment_id }}</div> -->
-        <router-link :to="`/equipment?equipment_id=${item.equipment_id}`">
+        <router-link :to="`/equipmentitem?equipment_id=${item.equipment_id}`">
           <div class="row_cell">№ {{ item.equipment_number }}</div>
         </router-link>
         <div class="row_cell">№ {{ item.factory_number }}</div>

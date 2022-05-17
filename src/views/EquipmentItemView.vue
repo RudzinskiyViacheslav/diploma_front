@@ -38,13 +38,16 @@ export default {
     };
   },
   mounted() {
-    fetch(`http://localhost/api/v1/equipment?equipment_id=${1}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      method: "GET",
-    })
+    fetch(
+      `http://localhost/api/v1/equipment?equipment_id=${this.$route.query.equipment_id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        method: "GET",
+      }
+    )
       .then((result) =>
         console.log(
           result.json().then((data) => {
