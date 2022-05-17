@@ -7,10 +7,20 @@
           Оборудование производственного участка №
           {{ this.$route.query.equipment_department_id }}
         </div>
-        <div class="table-header__search">
-          <input type="text" />
+        <div id="create_card_button">
+          <div class="btn" @click="create_card">
+            Создать производственную карточку
+          </div>
         </div>
       </div>
+      <div class="table-header add-form-card">
+        <input type="text" placeholder="qweqwe" id="equipment_number">
+        <input type="text" name="" id="factory_number">
+        <input type="date" name="" id="delivery_date">
+        <input type="number" min=0 name="" id="depreciation_period">
+        <input type="text" name="" id="equipment_type">
+        <input type="number" min=0 name="" id="price">
+    </div>
       <div class="table_header">
         <div class="row">Номер оборудования в системе</div>
         <div class="row">Серийный номер</div>
@@ -18,9 +28,9 @@
         <div class="row">Амортизация</div>
         <div class="row">Тип оборудования</div>
         <div class="row">Стоимость</div>
+        <div class="row"></div>
       </div>
       <div v-for="(item, index) in data" :key="index" class="table_header">
-        <!-- <div class="row_cell">Проверка айди {{ item.equipment_id }}</div> -->
         <router-link :to="`/equipmentitem?equipment_id=${item.equipment_id}`">
           <div class="row_cell">№ {{ item.equipment_number }}</div>
         </router-link>
@@ -29,6 +39,9 @@
         <div class="row_cell">{{ item.depreciation_period }} дней</div>
         <div class="row_cell">{{ item.equipment_type }}</div>
         <div class="row_cell">{{ item.price }} рублей</div>
+        <div class="row_cell">
+          <div id-card = "{{ item.equipment_id }}" class="btn" @click="delete_card(item.equipment_id)">Удалить карточку</div>
+        </div>
       </div>
     </div>
   </div>
@@ -64,13 +77,93 @@ export default {
       )
       .catch((error) => console.log(error));
   },
+  methods: {
+    create_card() {
+      let a = {
+        "equipment_number": document.getElementById("equipment_number").value,
+          "factory_number": document.getElementById("factory_number").value,
+          "delivery_date": document.getElementById("delivery_date").value,
+          "depreciation_period": document.getElementById("depreciation_period").value,
+          "equipment_type": document.getElementById("equipment_type").value,
+          "equipment_department_id": this.$route.query.equipment_department_id,
+          "price": document.getElementById("price").value,
+      }
+      
+      console.log("qwewqewqeq");
+      fetch("http://localhost/api/v1/equipment/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(a)
+      }).then(function(response) {
+        document.location.reload(); 
+      });
+    },
+    delete_card(id){
+      console.log(id);
+      let a = {
+        "equipment_id": id 
+      }
+      
+      console.log("qwewqewqeq");
+      fetch("http://localhost/api/v1/equipment/delete", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(a)
+      }).then(function(response) {
+        document.location.reload(); 
+      });
+    },
+    apply() {
+      console.log(1);
+    },
+  },
 };
 </script>
 
 <style scoped>
+#delete_id_card {
+  display: none;
+}
+.add-form-card {
+            display: flex;
+            width: 100%;
+
+        }
+
+        .add-form-card input {
+            margin-right: 5px;
+            width: 100%;
+        }
 a {
   color: inherit;
   text-decoration: inherit;
+}
+.btn {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 25px;
+  margin: 0 15px 15px 0;
+  outline: none;
+  border: 0px solid #000;
+  border-radius: 50px;
+  height: 46px;
+  line-height: 46px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background-color: #260101;
+  box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  transition: box-shadow 0.2s;
 }
 .table {
   background: #594036;

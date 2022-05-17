@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div class="department">
     <!-- <h1>{{ data }}</h1> -->
@@ -6,14 +7,13 @@
         <div class="table-header__name">
           Производственные участки ЦАПФК "{{ this.$route.query.capfk_id }}"
         </div>
-        <div id="create_card_button">
+        <!-- <div id="create_card_button">
           <div class="btn" @click="create_card">
             Создать производственную карточку
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="table_header">
-        <!-- <div class="test" @click="apply"></div> -->
         <div class="row">Адрес участка</div>
         <div class="row">Номер участка</div>
         <div class="row">Начальник участка</div>
@@ -68,29 +68,31 @@ export default {
       )
       .catch((error) => console.log(error));
   },
-  methods: {
-    create_card() {
-      console.log("qwewqewqeq");
-      fetch("http://localhost/api/v1/equipment/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json;charset=utf-8",
-        },
-        body: {
-          equipment_number: "spir123",
-          factory_number: "21321312",
-          delivery_date: "20.01.2021",
-          depreciation_period: "160",
-          equipment_type: "Терминал",
-          equipment_department_id: 1,
-          price: "1000",
-        },
-      });
-    },
-    apply() {
-      console.log(1);
-    },
-  },
+  // methods: {
+  //   create_card() {
+  //     let a = {
+  //       "equipment_number": "spir123",
+  //         "factory_number": "21321312",
+  //         "delivery_date": "20.01.2021",
+  //         "depreciation_period": "160",
+  //         "equipment_type": "Терминал",
+  //         "equipment_department_id": 1,
+  //         "price": "1000",
+  //     }
+      
+  //     console.log("qwewqewqeq");
+  //     fetch("http://localhost/api/v1/equipment/create", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json;charset=utf-8",
+  //       },
+  //       body: JSON.stringify(a)
+  //     });
+  //   },
+  //   apply() {
+  //     console.log(1);
+  //   },
+  // },
 };
 </script>
 

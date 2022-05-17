@@ -8,6 +8,11 @@ const routes = [
     component: CapfkView,
   },
   {
+    path: "/createcard",
+    name: "createcard",
+    component: () => import("../views/CreateCardView.vue"),
+  },
+  {
     path: "/equipmentitem",
     name: "equipmentitem",
     component: () => import("../views/EquipmentItemView.vue"),
