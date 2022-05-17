@@ -13,7 +13,7 @@
     </div>
     <div class="nav-buttons">
       <router-link to="/capfk">ЦАПФК</router-link>
-      <router-link to="/equipmentitem">О проекте</router-link>
+      <router-link to="/about">О проекте</router-link>
       <router-link to="/createuser">Регистрация</router-link>
     </div>
   </nav>

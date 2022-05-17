@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>привет шалава)</h1>
+    <h1>Разработка Вячеслава</h1>
   </div>
 </template>

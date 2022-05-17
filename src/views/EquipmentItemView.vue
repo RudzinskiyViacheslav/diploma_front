@@ -1,6 +1,6 @@
 <template>
   <div class="equipment_item_view">
-    {{ data }}
+    <!-- {{ data }} -->
     <div class="table">
       <div class="table-header">
         <div class="table-header__name">
