@@ -6,11 +6,10 @@
         <div class="table-header__name">
           Производственная карточка № {{ data[0].equipment_number }}
         </div>
-        <!-- <div id="create_card_button">
-          <div class="btn" @click="update_card">
-            Обновить производственную карточку
-          </div>
-        </div> -->
+      </div>
+      <div class="table-header table-header_info">
+        *Чтобы обновить производственную карточку, заполните формы и нажмите кнопку "Обновить
+        производственную карточку"
       </div>
       <div class="table_header">
         <div class="row">Номер оборудования в системе</div>
@@ -19,28 +18,20 @@
         <div class="row">Амортизация</div>
         <div class="row">Тип оборудования</div>
         <div class="row">Стоимость</div>
+        <div class="row"></div>
       </div>
-      <div v-for="(item, index) in data" :key="index" class="table_header">
-        <div class="row_cell">№ 
+      <div v-for="(item, index) in data" :key="index" class="table_header add-form-card">
           <input type="text" v-bind:value='item.equipment_number' id="equipment_number">
-        </div>
-        <div class="row_cell">№ 
-          <input type="text" v-bind:value='item.factory_number' id="factory_number">></div>
-        <div class="row_cell">
-          <input type="text" v-bind:value='item.delivery_date' id="delivery_date"></div>
-        <div class="row_cell">
-          <input type="text" v-bind:value='item.depreciation_period' id="depreciation_period"> дней</div>
-        <div class="row_cell">
-          <input type="text" v-bind:value='item.equipment_type' id="equipment_type"></div>
-        <div class="row_cell">
-          <input type="text" v-bind:value='item.price' id="price"> рублей</div>
-<div class="row_cell">
+          <input type="text" v-bind:value='item.factory_number' id="factory_number">
+          <input type="text" v-bind:value='item.delivery_date' id="delivery_date">
+          <input type="text" v-bind:value='item.depreciation_period' id="depreciation_period">
+          <input type="text" v-bind:value='item.equipment_type' id="equipment_type">
+          <input type="text" v-bind:value='item.price' id="price">
         <div id="create_card_button">
           <div class="btn" @click="update_card(item.equipment_id)">
             Обновить производственную карточку
           </div>
         </div>
-      </div>
       </div>
     </div>
   </div>
@@ -87,9 +78,17 @@ export default {
           "equipment_type": document.getElementById("equipment_type").value,
           "equipment_department_id": this.$route.query.equipment_department_id,
           "price": document.getElementById("price").value,
-      }
+      };
+      if (a.equipment_number == "" ||
+          a.factory_number == "" ||
+          a.delivery_date == "" ||
+          a.depreciation_period == "" ||
+          a.equipment_type == "" ||
+          a.price == "")
+          {alert('Для обновления производственной карточки все поля должны быть заполнены');
+          document.location.reload();
+          } else {
       
-      console.log("qwewqewqeq");
       fetch("http://localhost/api/v1/equipment/update", {
         method: "POST",
         headers: {
@@ -98,13 +97,31 @@ export default {
         body: JSON.stringify(a)
       }).then(function(response) {
         document.location.reload(); 
-      });
+      })};
     },
   }
 };
 </script>
 
 <style scoped>
+.add-form-card input {
+  margin-right: 5px;
+  width: 200px;
+  background-color: #260101;
+  color: #fff;
+  font-size: 14px;
+  height: 46px;
+  border: 0px solid #000;
+  border-radius: 50px;
+  text-align: center;
+}
+.table-header_info {
+  color: #fff;
+  font-weight: semi-bold;
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 40px;
+}
 .btn {
   display: inline-block;
   box-sizing: border-box;
@@ -145,12 +162,13 @@ a {
 .table-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 58px;
+  margin-bottom: 20px;
 }
 .table-header__name {
   color: white;
   font-weight: semi-bold;
-  font-size: 20px;
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 .table_header {
   display: flex;

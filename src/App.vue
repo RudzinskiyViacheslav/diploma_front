@@ -22,7 +22,7 @@
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, Helvetica, Arial, sans-serif;
   text-align: center;
   width: 100%;
   height: 100%;

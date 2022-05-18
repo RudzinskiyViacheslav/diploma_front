@@ -3,9 +3,9 @@
     <!-- <img alt="Vue logo" src="../assets/logo.svg" /> -->
     <div class="table">
       <div class="table-header">
-        <div class="table-header__name">Точки</div>
-        <div class="table-header__search">
-          <input type="text" />
+        <div class="table-header__name">Точки ЦАПФК</div>
+        <div class="table-header search-form">
+          <input type="text" placeholder="Поиск ЦАПФК" id="search_capfk"/>
         </div>
       </div>
       <div class="table_header">
@@ -77,6 +77,17 @@ export default {
 </script>
 
 <style scoped>
+.search-form input {
+  margin-right: 5px;
+  width: 300px;
+  background-color: #260101;
+  color: #fff;
+  font-size: 14px;
+  height: 46px;
+  border: 0px solid #000;
+  border-radius: 50px;
+  text-align: center;
+}
 a {
   color: inherit;
   text-decoration: inherit;
@@ -94,12 +105,14 @@ a {
 .table-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 58px;
+  margin-bottom: 20px;
 }
 .table-header__name {
   color: white;
   font-weight: semi-bold;
-  font-size: 20px;
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
 .table_header {
   display: flex;

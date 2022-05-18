@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
-import CapfkView from "../views/CapfkView.vue";
 
 const routes = [
   {
     path: "/capfk",
-    name: "home",
-    component: CapfkView,
+    name: "capfk",
+    component: () => import("../views/CapfkView.vue"),
+  },
+  {
+    path: "/mainscreen",
+    name: "mainscreen",
+    component: () => import("../views/MainScreenView.vue"),
   },
   {
     path: "/createcard",
