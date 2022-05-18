@@ -1,9 +1,8 @@
 <template>
-  <nav>
+  <nav id="navig">
     <div class="user-card">
-      <div class="user-card-name">Рудзинский В.В.</div>
-      <div class="user-card-role">Инженер</div>
-      <div class="user-card-logout">Выйти</div>
+      <div class="user-card-name" id="log"></div>
+      <div class="user-card-exit" @click="exit">Выйти</div>
     </div>
     <div class="logo-style">
       <img alt="Vue logo" src="@/assets/logo.svg" />
@@ -19,6 +18,49 @@
   </nav>
   <router-view />
 </template>
+
+<script>
+// import parseCookie from "@/network/cookie_parser";
+export default {
+  name: "AppView",
+  methods: {
+    exit() {
+      fetch("http://localhost/api/v1/exit", {
+        method: "POST",
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      }).then(function(response) {
+        document.location.href = "http://localhost/";
+      });
+      // document.cookie = 'logincookie=';
+      // document.location.href = "http://localhost/";
+    }
+  },
+  data() { 
+    fetch(`http://localhost/api/v1/getcurrentuser`,{
+    method: "POST",
+    headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+    }).then(function(response) {
+      console.log(response.json().then((result) => {
+        // console.log(result);
+        document.getElementById("log").innerText = result;
+        if (result == "") {
+          document.getElementById("navig").style.display = "none";
+          // document.location.href="http:/localhost/"; 
+        }
+      }));
+    })
+  }
+};
+
+// if (parseCookie(document.cookie)) {
+//   console.log("Куки есть!");
+// }
+</script>
 
 <style>
 #app {
@@ -71,12 +113,18 @@ nav {
   width: 240px;
   text-align: left;
   font-size: 24px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 8px;
 }
 
-.user-card-role {
+.user-card-exit {
   margin-left: 12px;
   text-align: left;
   font-size: 18px;
+  margin-left: 60px;
+  color: #000;
+  opacity: 0.6;
 }
 
 nav a {

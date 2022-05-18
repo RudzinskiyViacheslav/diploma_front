@@ -5,7 +5,28 @@
       <div class="table-header">
         <div class="table-header__name">Точки ЦАПФК</div>
         <div class="table-header search-form">
-          <input type="text" placeholder="Поиск ЦАПФК" id="search_capfk"/>
+          
+          <div class="add-form-card">
+          <input type="text" placeholder="Поиск" id="search" />
+          </div>
+
+          <div id="search_button">
+          <div class="btn" @click="search_capfk">
+            Найти
+          </div>
+          </div>
+
+          <div id="usual_button">
+          <div class="btn" @click="usual_capfk">
+            Обычный вид ЦАПФК
+          </div>
+          </div>
+          
+          <div id="sort_button">
+          <div class="btn" @click="sort_by_quantity">
+            Отсортировать ЦАПФК по количеству ПУ
+          </div>
+          </div>
         </div>
       </div>
       <div class="table_header">
@@ -31,6 +52,7 @@
 </template>
 
 <script>
+// alert(document.cookie.logincookie);
 // @ is an alias to /src
 import capfkData from "../models/capfk";
 import {
@@ -42,21 +64,6 @@ export default {
   data() {
     return {
       data: capfkData,
-      thead: [
-        "Название",
-        "Производственные участки",
-        "Адрес",
-        "Индекс",
-        "Начальник",
-      ],
-      tbody: [
-        "name",
-        "adress",
-        "station_name",
-        "index",
-        "departments_quantity",
-        "master",
-      ],
     };
   },
   mounted() {
@@ -73,10 +80,96 @@ export default {
       )
       .catch((error) => console.log(error));
   },
-};
+  methods: {
+    sort_by_quantity(){
+      fetch(`http://localhost/api/v1/capfk_sort`, {
+      headers: headers,
+      method: "GET",
+    })
+      .then((result) =>
+        console.log(
+          result.json().then((data) => {
+            this.data = data;
+          })
+        )
+      )
+      .catch((error) => console.log(error));
+    },
+    usual_capfk(){
+      fetch(`http://localhost/api/v1/capfk `, {
+      headers: headers,
+      method: "GET",
+    })
+      .then((result) =>
+        console.log(
+          result.json().then((data) => {
+            this.data = data;
+          })
+        )
+      )
+      .catch((error) => console.log(error));
+    },
+    search_capfk() {
+      let a = {
+        name: document.getElementById("search").value,
+      };
+
+      if (a.name !== ""){
+        console.log(a.name);
+        fetch("http://localhost/api/v1/capfk_search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(a),
+      }).then((result) =>
+        console.log(
+          result.json().then((data) => {
+            if (result.status == 404){
+              alert(data);
+            }
+            else{
+            this.data = data;}
+          })
+        )
+      )
+      
+      
+      
+      };
+    document.getElementById("search").value = "";
+  },
+},
+}
 </script>
 
 <style scoped>
+.search_form {
+  margin-right: 30px;
+}
+.btn {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 25px;
+  margin: 0 15px 15px 0;
+  outline: none;
+  border: 0px solid #000;
+  border-radius: 50px;
+  height: 46px;
+  line-height: 46px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background-color: #260101;
+  box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  transition: box-shadow 0.2s;
+}
 .search-form input {
   margin-right: 5px;
   width: 300px;

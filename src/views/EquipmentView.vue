@@ -7,6 +7,22 @@
           Оборудование производственного участка №
           {{ this.$route.query.equipment_department_id }}
         </div>
+
+        <div id="create_card_button">
+
+          <div class="btn" @click="usual_equip">
+            Обычный вид оборудования
+          </div>
+
+          <div class="btn" @click="sort_by_amort">
+            Отсортировать по амортизации
+          </div>
+
+          <!-- <div class="btn" @click="sort_by_price">
+            Отсортировать по стоимости
+          </div> -->
+        </div>
+
       </div>
       <div class="table-hedaer table-header_info">
         *Чтобы добавить новую производственную карточку для данного
@@ -94,6 +110,49 @@ export default {
       .catch((error) => console.log(error));
   },
   methods: {
+    sort_by_price(){
+
+    },
+    sort_by_amort() {
+      fetch(
+      `http://localhost/api/v1/equipment_sort_amort?equipment_department_id=${this.$route.query.equipment_department_id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        method: "GET",
+      }
+    )
+      .then((result) =>
+        console.log(
+          result.json().then((data) => {
+            this.data = data;
+          })
+        )
+      )
+      .catch((error) => console.log(error));
+    },
+    usual_equip() {
+      fetch(
+      `http://localhost/api/v1/equipment?equipment_department_id=${this.$route.query.equipment_department_id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        method: "GET",
+      }
+    )
+      .then((result) =>
+        console.log(
+          result.json().then((data) => {
+            this.data = data;
+          })
+        )
+      )
+      .catch((error) => console.log(error));
+    },
     create_card() {
       let a = {
         equipment_number: document.getElementById("equipment_number").value,

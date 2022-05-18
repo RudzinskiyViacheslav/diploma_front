@@ -38,6 +38,37 @@
 
 <script>
 
+export default {
+    name: "MainScreenView",
+    methods: {
+        login() {
+            let log = document.getElementById("login_input").value;
+            let pass = document.getElementById("password_input").value;
+
+            let login = {
+                email: log,
+                password: pass,
+            };
+            console.log(login)
+
+            fetch("http://localhost/api/v1/login", {
+                method: "POST",
+                headers: {
+                   "Content-Type": "application/json;charset=utf-8", 
+                },
+                body: JSON.stringify(login),
+            }).then((result) => {
+                console.log(result);
+                if (result.status == 200) {
+                    console.log(909090909);
+                    document.location.href = "http://localhost/capfk";
+                };
+        });
+            console.log(112);
+    },
+},
+};
+// alert(document.cookie.logincookie);
 </script>
 
 <style scoped>

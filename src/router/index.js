@@ -7,14 +7,14 @@ const routes = [
     component: () => import("../views/CapfkView.vue"),
   },
   {
-    path: "/mainscreen",
+    path: "/",
     name: "mainscreen",
     component: () => import("../views/MainScreenView.vue"),
   },
   {
-    path: "/createcard",
-    name: "createcard",
-    component: () => import("../views/CreateCardView.vue"),
+    path: "/createuser",
+    name: "createuser",
+    component: () => import("../views/CreateUserView.vue"),
   },
   {
     path: "/equipmentitem",
