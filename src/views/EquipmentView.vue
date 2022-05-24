@@ -15,7 +15,7 @@
           </div>
 
           <div class="btn" @click="sort_by_amort">
-            Отсортировать по амортизации
+            Отсортировать по окончанию амортизации
           </div>
 
           <!-- <div class="btn" @click="sort_by_price">
@@ -52,9 +52,10 @@
         <div class="row">Серийный номер</div>
         <div class="row">Дата поставки</div>
         <div class="row">Амортизация</div>
+        <div class="row">Конец амортизации</div>
         <div class="row">Тип оборудования</div>
         <div class="row">Стоимость</div>
-        <div class="row"></div>
+        <div class="date">Текущая дата: {{ nowDate }}</div>
       </div>
       <div v-for="(item, index) in data" :key="index" class="table_header">
         <router-link :to="`/equipmentitem?equipment_id=${item.equipment_id}`">
@@ -63,6 +64,10 @@
         <div class="row_cell">№ {{ item.factory_number }}</div>
         <div class="row_cell">{{ item.delivery_date }}</div>
         <div class="row_cell">{{ item.depreciation_period }} дней</div>
+        <div class="row_cell" v-if="(5-2) <= 10">
+          {{ item.depreciation_end }}qwewqqe</div>
+          <div class="row_cell" v-if="(item.depreciation_end - nowDate) > 10">
+          {{ item.depreciation_end }}123213</div>
         <div class="row_cell">{{ item.equipment_type }}</div>
         <div class="row_cell">{{ item.price }} рублей</div>
         <div class="row_cell">
@@ -87,6 +92,7 @@ export default {
   data() {
     return {
       data: equipmentData,
+      nowDate: new Date().toISOString().split('T')[0],
     };
   },
   mounted() {
@@ -205,6 +211,12 @@ export default {
 </script>
 
 <style scoped>
+.date {
+  font-size: 20px;
+  font-weight: bold;
+  width: 250px;
+  text-align: start;
+}
 #delete_id_card {
   display: none;
 }
@@ -232,7 +244,7 @@ a {
   display: inline-block;
   box-sizing: border-box;
   padding: 0 25px;
-  margin: 0 15px 15px 0;
+  margin: 0 0px 0px 0;
   outline: none;
   border: 0px solid #000;
   border-radius: 50px;
@@ -256,7 +268,7 @@ a {
   opacity: 0.6;
   backdrop-filter: blur(20px);
   border-radius: 16px;
-  padding: 16px 54px;
+  padding: 16px 20px;
   font-family: Inter;
 }
 .table-header {
@@ -279,14 +291,13 @@ a {
 }
 .table_header {
   display: flex;
-
   justify-content: space-between;
 }
 .table_header:not(:last-child) {
   margin-bottom: 21px;
 }
 .row_cell {
-  width: 250px;
+  width:200px;
   text-align: start;
   color: white;
   font-weight: semi-bold;

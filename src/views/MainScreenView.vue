@@ -60,9 +60,11 @@ export default {
             }).then((result) => {
                 console.log(result);
                 if (result.status == 200) {
-                    console.log(909090909);
                     document.location.href = "http://localhost/capfk";
-                };
+                } 
+                else{
+                    console.log(12312);
+                    alert('Вы ввели неверный логин и/или пароль')};
         });
             console.log(112);
     },

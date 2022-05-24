@@ -56,7 +56,7 @@ data(){
 },
 methods: {
   create_card() {
-    let a ={
+    let a = {
       first_name: document.getElementById("first_name").value,
       last_name: document.getElementById("last_name").value,
       middle_name: document.getElementById("middle_name").value,

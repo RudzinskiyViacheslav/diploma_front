@@ -5,7 +5,7 @@
     <div class="table">
       <div class="table-header">
         <div class="table-header__name">
-          Производственные участки ЦАПФК №{{ this.$route.query.capfk_id }}
+          Производственные участки ЦАПФК №{{ this.$route.query.capfk_id }} 
         </div>
         <!-- <div id="create_card_button">
           <div class="btn" @click="create_card">
