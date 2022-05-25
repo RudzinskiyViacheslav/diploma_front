@@ -1,10 +1,18 @@
 <template>
   <div class="equipment_item_view">
-    <!-- {{ data }} -->
+    <!-- {{ data[0] }} -->
     <div class="table">
       <div class="table-header">
         <div class="table-header__name">
           Производственная карточка № {{ data[0].equipment_number }}
+        </div>
+        <div class="back">
+        <div class="btn" style="font-size: 20px">
+        <!-- {{data[0].equipment_department_id}} -->
+        <router-link :to="`/equipment?equipment_department_id=${data[0].equipment_department_id}`">
+        Назад
+        </router-link>
+        </div>
         </div>
       </div>
       <div class="table-header table-header_info">
@@ -23,10 +31,10 @@
       <div v-for="(item, index) in data" :key="index" class="table_header add-form-card">
           <input type="text" v-bind:value='item.equipment_number' id="equipment_number">
           <input type="text" v-bind:value='item.factory_number' id="factory_number">
-          <input type="text" v-bind:value='item.delivery_date' id="delivery_date">
-          <input type="text" v-bind:value='item.depreciation_period' id="depreciation_period">
+          <input type="date" v-bind:value='item.delivery_date' id="delivery_date">
+          <input type="number" min="0" v-bind:value='item.depreciation_period' id="depreciation_period">
           <input type="text" v-bind:value='item.equipment_type' id="equipment_type">
-          <input type="text" v-bind:value='item.price' id="price">
+          <input type="number" min="0" v-bind:value='item.price' id="price">
         <div id="create_card_button">
           <div class="btn" @click="update_card(item.equipment_id)">
             Обновить производственную карточку

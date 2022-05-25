@@ -134,7 +134,8 @@ a {
   opacity: 0.6;
   backdrop-filter: blur(20px);
   border-radius: 16px;
-  padding: 16px 54px;
+  margin: 0px 12px 54px 12px;
+  padding: 54px 54px;
   font-family: Inter;
 }
 .table-header {

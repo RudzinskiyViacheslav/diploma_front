@@ -10,6 +10,12 @@
 
         <div id="create_card_button">
 
+          <!-- <div class="btn">
+            <router-link :to="`/department?capfk_id=${data[0].capfk_id}`">
+        Назад
+        </router-link>
+          </div> -->
+
           <div class="btn" @click="usual_equip">
             Обычный вид оборудования
           </div>
@@ -52,10 +58,11 @@
         <div class="row">Серийный номер</div>
         <div class="row">Дата поставки</div>
         <div class="row">Амортизация</div>
-        <div class="row">Конец амортизации</div>
+        <div class="row">Крайняя дата конца амортизации</div>
+        <div class="row">До конца амортизации осталось</div>
         <div class="row">Тип оборудования</div>
         <div class="row">Стоимость</div>
-        <div class="date">Текущая дата: {{ nowDate }}</div>
+        <div class="date">Текущая дата: {{ new Date().toLocaleDateString() }}</div>
       </div>
       <div v-for="(item, index) in data" :key="index" class="table_header">
         <router-link :to="`/equipmentitem?equipment_id=${item.equipment_id}`">
@@ -64,10 +71,25 @@
         <div class="row_cell">№ {{ item.factory_number }}</div>
         <div class="row_cell">{{ item.delivery_date }}</div>
         <div class="row_cell">{{ item.depreciation_period }} дней</div>
-        <div class="row_cell" v-if="(5-2) <= 10">
-          {{ item.depreciation_end }}qwewqqe</div>
-          <div class="row_cell" v-if="(item.depreciation_end - nowDate) > 10">
-          {{ item.depreciation_end }}123213</div>
+        <div class="row_cell">{{ item.depreciation_end }}</div>
+
+        <div class="row_cell" style="color: #8B0000; font-weight: bold"
+          v-if="(Math.trunc((new Date(item.depreciation_end) - nowDate)/1000/60/60/24)) <= 0">
+          {{ Math.trunc((new Date(item.depreciation_end) - nowDate)/1000/60/60/24) }} дней *Срочная замена</div>
+          
+        <div class="row_cell" style="color: #FF8C00; font-weight: bold"
+          v-else-if="(Math.trunc((new Date(item.depreciation_end) - nowDate)/1000/60/60/24)) <= 30">
+          {{ Math.trunc((new Date(item.depreciation_end) - nowDate)/1000/60/60/24) }} дней *Стоит заменить</div>
+
+          <div class="row_cell" style="color: #00FF7F; font-weight: bold"
+          v-else-if="(Math.trunc((new Date(item.depreciation_end) - nowDate)/1000/60/60/24)) <= 120">
+          {{ Math.trunc((new Date(item.depreciation_end) - nowDate)/1000/60/60/24) }} дней *Замена еще не скоро</div>
+
+          <div class="row_cell" style="color: #00008B; font-weight: bold"
+          v-else-if="(Math.trunc((new Date(item.depreciation_end) - nowDate)/1000/60/60/24)) > 120">
+          {{ Math.trunc((new Date(item.depreciation_end) - nowDate)/1000/60/60/24) }} дней *Полностью в норме</div>
+        
+        
         <div class="row_cell">{{ item.equipment_type }}</div>
         <div class="row_cell">{{ item.price }} рублей</div>
         <div class="row_cell">
@@ -92,7 +114,7 @@ export default {
   data() {
     return {
       data: equipmentData,
-      nowDate: new Date().toISOString().split('T')[0],
+      nowDate: new Date(),
     };
   },
   mounted() {
