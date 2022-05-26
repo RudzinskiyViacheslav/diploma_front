@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.svg" /> -->
+    {{data[0.].capfk_name}}
     <div class="table">
       <div class="table-header">
         <div class="table-header__name">Точки ЦАПФК</div>
@@ -90,6 +91,12 @@ export default {
         console.log(
           result.json().then((data) => {
             this.data = data;
+            console.log(data[0]);
+            let a = document.createElement("a");
+            let file = new Blob([JSON.stringify(data)], {type: 'application/json'});
+            a.href = URL.createObjectURL(file);
+            a.download = "example.xls";
+            a.click();
           })
         )
       )
