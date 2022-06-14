@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.svg" /> -->
-    {{data[0.].capfk_name}}
+    <!-- {{data[0.].capfk_name}} -->
     <div class="table">
       <div class="table-header">
-        <div class="table-header__name">Точки ЦАПФК</div>
+        <div class="table-header__name">Точки ЦАФПК</div>
         <div class="table-header search-form">
           
           <div class="add-form-card">
@@ -19,13 +19,13 @@
 
           <div id="usual_button">
           <div class="btn" @click="usual_capfk">
-            Обычный вид ЦАПФК
+            Обычный вид ЦАФПК
           </div>
           </div>
           
           <div id="sort_button">
           <div class="btn" @click="sort_by_quantity">
-            Отсортировать ЦАПФК по количеству ПУ
+            Отсортировать ЦАФПК по количеству ПУ
           </div>
           </div>
         </div>
@@ -92,11 +92,11 @@ export default {
           result.json().then((data) => {
             this.data = data;
             console.log(data[0]);
-            let a = document.createElement("a");
-            let file = new Blob([JSON.stringify(data)], {type: 'application/json'});
-            a.href = URL.createObjectURL(file);
-            a.download = "example.xls";
-            a.click();
+            // let a = document.createElement("a");
+            // let file = new Blob([JSON.stringify(data)], {type: 'application/json'});
+            // a.href = URL.createObjectURL(file);
+            // a.download = "example.xls";
+            // a.click();
           })
         )
       )

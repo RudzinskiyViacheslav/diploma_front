@@ -11,7 +11,7 @@
       АС учета технологического оборудования ЖД Агенств
     </div>
     <div class="nav-buttons">
-      <router-link to="/capfk">ЦАПФК</router-link>
+      <router-link to="/capfk">ЦАФПК</router-link>
       <router-link to="/about">О проекте</router-link>
       <router-link to="/createuser">Регистрация</router-link>
     </div>

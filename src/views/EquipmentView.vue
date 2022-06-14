@@ -16,6 +16,10 @@
         </router-link>
           </div> -->
 
+          <div class="btn" @click="report">
+            Выгрузить отчет
+          </div>
+
           <div class="btn" @click="usual_equip">
             Обычный вид оборудования
           </div>
@@ -156,10 +160,23 @@ export default {
         console.log(
           result.json().then((data) => {
             this.data = data;
+            // let a = document.createElement("a");
+            // let file = new Blob([JSON.stringify(data)], {type: 'application/json'});
+            // a.href = URL.createObjectURL(file);
+            // a.download = "example.txt";
+            // a.click();
           })
         )
       )
       .catch((error) => console.log(error));
+    },
+    report() {
+      let a = document.createElement("a");
+      let otchet = "";
+      let file = new Blob([JSON.stringify(this.data)], {type: 'application/json'});
+      a.href = URL.createObjectURL(file);
+      a.download = "report.json";
+      a.click();
     },
     usual_equip() {
       fetch(
